@@ -3,6 +3,7 @@ using SerialPortCommunication;
 using System; using System.Collections.Generic;
 using System.Threading.Tasks;
 using TableDependency.SqlClient; using TableDependency.SqlClient.Base.Enums; using TableDependency.SqlClient.Base.EventArgs;  namespace EventMonitoring.Data {     delegate void PassageThroughTurnstileEventHandler();      public class MonitorChange : IDisposable     {         private bool isDisposed = false;         private readonly SqlTableDependency<tblEvents_55> tblEvents_55Dependency;
+
         /// <summary>
         /// Represents KeyValue pairs where key is id of control point and value is a particular serial device.
         /// 
@@ -56,9 +57,11 @@ using TableDependency.SqlClient; using TableDependency.SqlClient.Base.Enums;�
             }
 
             foreach (KeyValuePair<int, ModbusPortCommunication> entry in Turnstiles)
+            {
                 entry.Value.Dispose();
-            Turnstiles = null;
+            }
 
+            Turnstiles = null;
             isDisposed = true;
         }
 

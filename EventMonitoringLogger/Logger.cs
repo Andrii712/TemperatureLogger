@@ -13,7 +13,7 @@ namespace EventMonitoringLogger
             using (StreamWriter streamWriter = File.AppendText(filePath))
             {
                 await streamWriter.WriteAsync("\r\nLog Entry : ");
-                await streamWriter.WriteLineAsync($"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()}");
+                await streamWriter.WriteLineAsync($"{DateTime.Now:dd/MM/yyyy hh:mm:ss}");
                 await streamWriter.WriteLineAsync($"Source       :{exception.Source}");
                 await streamWriter.WriteLineAsync($"TargetSite   :[{exception.TargetSite}]");
                 await streamWriter.WriteLineAsync($"Description  :{exception.Message}");
